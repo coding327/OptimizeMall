@@ -1,70 +1,68 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Question
 
-## Available Scripts
+1. 控制台报错[谷歌浏览器会出现这个问题，在Edge浏览器上没有报这个问题]
+   - translate.google.com/gen204?sl=en&tl=zh-CN&textlen=2&ttt=149&ttl=217&ttf=191&sr=1&nca=te_time&client=te_lib&logld=vTE_20220720:1          GET http://translate.google.com/gen204?sl=en&tl=zh-CN&textlen=2&ttt=149&ttl=217&ttf=191&sr=1&nca=te_time&client=te_lib&logld=vTE_20220720 net::ERR_CONNECTION_TIMED_OUT
 
-In the project directory, you can run:
+![10017](https://cdn.jsdelivr.net/gh/coding327/PicGoImg@main/blog/pictures10017.png)
 
-### `npm start`
+解决：`<html lang="en"></html>`，默认是en,谷歌浏览器我是使用的中文版，与这个en英文不匹配，只需要更改`lang='zh-cmn-Hans
+'`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+详细说明：https://blog.csdn.net/ztxnight/article/details/49150339
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. 使用ant design的轮播组件，请求图片最初始为空，传递给子组件轮播渲染报如下警告
 
-### `npm test`
+![10018](https://cdn.jsdelivr.net/gh/coding327/PicGoImg@main/blog/pictures10018.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+解决：使用&&,等图片请求过来，数组有长度了，再传递渲染这个轮播组件
 
-### `npm run build`
+```jsx
+{/* 轮播图 */}
+{swiperArr.length && <MySwiper swiperArr={swiperArr}/>}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. 基本文本超出显示省略号
+```css
+p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. css强制换行无效的终极解决方案
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```css
+p {
+    overflow-wrap: break-word;
+    /*就是下面这一句，好像网上没有这一个的说明，但是浏览器都支持*/
+    word-break: break-word;
+    word-wrap: break-word;
+    /* 多行文本超出显示省略号【注意定下盒子宽高】 */
+    overflow: hidden;
+    /* 第二行显示省略号，高度来限制 */
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+}
+```
 
-### `npm run eject`
+大佬解决方案：https://www.javazxz.com/thread-9304-1-1.html
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
+```
+{/* 轮播图 */}
+            {swiperArr.length && <MySwiper swiperArr={swiperArr} />}
+            {/* 列表 */}
+            {goodArr.length && <Good goodArr={goodArr} />}
+            {/* 没有更多了 */}
+            <p style={{height: '60px', lineHeight: '60px', textAlign: 'center', paddingBottom: '50px'}}>没有更多了</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+> react的jsx语法里{}里，单个组件标签不需要在外层用空标签或div包裹，但是多个组件标签就需要使用空标签或者div包裹，都是针对于自己写的组件，但是三方引入的如ant design的组件，它的组件标签是不需要空标签或者div包裹，如果三方引入组件和自己写的组件放同级外面也是需要空标签或者div包裹
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+> 在同目录下样式组件优先高于css文件，无法引入css文件，始终显示样式组件文件，需要在该文件夹下创建一个css文件，来放css文件，就能成功引入
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
