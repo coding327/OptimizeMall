@@ -21,7 +21,7 @@
 {swiperArr.length && <MySwiper swiperArr={swiperArr}/>}
 ```
 
-3. 常规文本超出显示省略号
+3. 多行文本超出显示省略号
 ```css
 p{
     overflow: hidden;
