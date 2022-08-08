@@ -21,11 +21,12 @@
 {swiperArr.length && <MySwiper swiperArr={swiperArr}/>}
 ```
 
-3. 基本文本超出显示省略号
+3. 常规文本超出显示省略号
 ```css
 p{
     overflow: hidden;
     display: -webkit-box;
+    /* 指定第2行超出显示省略号 */
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
