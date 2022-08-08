@@ -6,10 +6,9 @@
 
 ![10017](https://cdn.jsdelivr.net/gh/coding327/PicGoImg@main/blog/pictures10017.png)
 
-解决：`<html lang="en"></html>`，默认是en,谷歌浏览器我是使用的中文版，与这个en英文不匹配，只需要更改`lang='zh-cmn-Hans
-'`
+解决：`<html lang="en"></html>`，默认是en,而谷歌浏览器我是使用的中文版本，与这个en英文不匹配，只需要更改`lang='zh-cmn-Hans'`，这个是目前完整写法，也有`lang='zh'`的，具体看下方链接：
 
-详细说明：https://blog.csdn.net/ztxnight/article/details/49150339
+[详细说明链接地址](https://blog.csdn.net/ztxnight/article/details/49150339)
 
 2. 使用ant design的轮播组件，请求图片最初始为空，传递给子组件轮播渲染报如下警告
 
@@ -49,7 +48,7 @@ p {
 }
 ```
 
-大佬解决方案：https://www.javazxz.com/thread-9304-1-1.html
+[点击查看大佬解决方案](https://www.javazxz.com/thread-9304-1-1.html)
 
 ---
 ```
